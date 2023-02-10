@@ -87,4 +87,4 @@ No fixtures were defined at this time since sparse CSV files were used for data.
 * More domain knowledge could be implemented based on available fields.
 * A frontend could be supported.  Along the way I contemplated `escript`, Web frontend, LiveView single-page app, etc.
     * Certainly the `display_string` rendering useful for `REPL` is a convenience and needs to be replaced.
-* The `:ets` query could be refactored to use `MatchSpect` with `select/2/3`.
+* The `:ets` query could be refactored to use `MatchSpec` with `select/2/3`.
