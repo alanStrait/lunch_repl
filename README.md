@@ -21,7 +21,16 @@ Code example using [peck/engineering-assessment](https://github.com/peck/enginee
     - [x] Implement `DineOutsideTest`, no fixtures necessary (use sparse CSV files)
 
 ## Context and Instructions
-Pretty much everything that I set out to do with Elixir results in quite a lot of learning. This exercise did not break the mold.
+Pretty much everything that I set out to do with Elixir results in learning something new or making clear what may have been opaque before. I happened to do this exercise while working through James Gray and Bruce Tate's "Designing Elixir Systems with OTP" where heuristics for writing good Elixir include:
+
+* Build single-purpose functions
+* Where possible, bring functions to data rather than bringing your data to functions
+* Name concepts with functions
+* Shape functions for composition
+* Build functions at a single level of abstraction
+* Make decisions in function heads where possible
+
+Hopefully some of this refinement to my writing style shows up here.
 
 ### Domain 
 The prompt provides a CSV file that describes food trucks and carts around San Francisco.  It was surprising to find that so few of the vendors had a `status` of `APPROVED` or `ISSUED`.  Most were either `EXPIRED` or `REQUESTED`.  
@@ -39,9 +48,9 @@ Most all trucks and carts had a latitude and longitude associated with them.  Th
 * search_by_food_item_within_meters/3
 
 ### Shape of Implementation
-Since the purpose of this repo is to discuss the implementation, the interface is the Elixir REPL, `iex`.  
+Since the purpose of this repo is to discuss the implementation, the interface is the Elixir REPL, `iex`, rather than something more user friendly.
 
-The overall shape includes a `context` module that represents the API named `DineOutside`, a `core` module called `Location` that serves as the struct for the portion of the CSV that is retained and for functions that are closely associated with the `Location` module properties, and a `GenServer` boundary module in the form of a `DataContainer` that is backed by `:ets` and serves as a VM singleton to manage the CSV data.
+The overall shape includes a `context` module that represents the API named `DineOutside`, a `core` module called `Location` that serves as the struct for the portion of the CSV record that is retained and for functions that are closely associated with the `Location` module properties, and a `GenServer` boundary module in the form of a `DataContainer` that is backed by `:ets` and serves as a VM singleton to manage the CSV data.
 
 ### Instructions
 This module can be cloned locally with:
@@ -78,7 +87,7 @@ DineOutside.search_by_food_item_within_meters("Vegan Pastries", {-122.4046, 37.7
 ```
 
 ### Automated Testing
-The strategy for automated testing focuses on the `context` module by way of `DineOutsideTest`.  These tests exercise the core module well and serve as the highest leverage point for a maximizing the value of limited time spent on tests.
+The strategy for automated testing focuses on the `context` module by way of `DineOutsideTest`.  These tests exercise the core module well and serve as the highest leverage point for maximizing the value of limited time spent on tests.
 
 No fixtures were defined at this time since sparse CSV files were used for data.
 
